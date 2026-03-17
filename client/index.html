@@ -14,53 +14,74 @@
 <div class="h-screen bg-amber-50 flex justify-center items-center">
     <div class="h-full w-full">
 
-        <div class="flex flex-col h-1/2 bg-amber-400 w-full justify-center items-center gap-4 p-4">
-            <div class="flex justify-between w-full max-w-5xl items-start px-4">
-                <div class="flex gap-2">
+        <div class="flex flex-col bg-amber-400 w-full justify-center items-center gap-4 p-4 py-6">
+            <div class="flex flex-wrap justify-between w-full max-w-5xl items-start gap-2 px-2">
+                <div class="flex gap-2 flex-wrap">
                     <button
-                            class="bg-amber-600 text-white font-bold py-2 px-4 rounded-lg
+                            class="bg-amber-600 text-white font-bold py-2 px-3 rounded-lg
                             hover:bg-amber-700 hover:scale-105 hover:cursor-pointer
                             active:scale-95 transition text-sm" id="save-button">
                         💾 SAVE
                     </button>
                     <button
-                            class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg
+                            class="bg-red-500 text-white font-bold py-2 px-3 rounded-lg
                             hover:bg-red-600 hover:scale-105 hover:cursor-pointer
                             active:scale-95 transition text-sm" id="reset-button">
                         ⚠️ RESET
+                    </button>
+                    <button id="logout-button"
+                            class="bg-red-500 text-white font-bold py-2 px-3 rounded-lg text-sm
+                            hover:bg-red-600 hover:scale-105 hover:cursor-pointer active:scale-95 transition">
+                        Déconnexion
                     </button>
                 </div>
 
                 <div id="error-message" class="text-center text-red-600 font-bold text-sm hidden">
                 </div>
 
-                <span id="user-name"></span>
-
-                <div class="bg-white/50 rounded-lg px-4 py-3 min-w-[180px]">
-                    <p id="cheese-total" class="text-xl font-black text-amber-900 text-right">0 🧀</p>
-                    <p id="cheese-click" class="text-xs text-amber-700 text-right mt-1">1 click = 1 🧀</p>
-                    <p id="cheese-per-second" class="text-xs text-amber-700 text-right">0 🧀/s</p>
+                <div class="flex items-center gap-3">
+                    <span id="user-name" class="text-amber-900 font-semibold text-sm"></span>
+                    <div class="bg-white/50 rounded-lg px-3 py-2 min-w-[140px]">
+                        <p id="cheese-total" class="text-lg font-black text-amber-900 text-right">0 🧀</p>
+                        <p id="cheese-click" class="text-xs text-amber-700 text-right mt-0.5">1 click = 1 🧀</p>
+                        <p id="cheese-per-second" class="text-xs text-amber-700 text-right">0 🧀/s</p>
+                    </div>
                 </div>
             </div>
-            <h1 class="font-black text-4xl text-amber-900">
+
+            <h1 class="font-black text-3xl md:text-4xl text-amber-900">
                 🧀 PARM'CLICK 🧀
             </h1>
 
-            <div class="relative w-100 h-100 flex items-center justify-center">
+            <div class="flex flex-col items-center lg:grid lg:grid-cols-3 lg:items-center gap-6 w-full max-w-6xl px-4">
 
-                <img    alt="Cheese to click"
-                        src="assets/img/cheese_1.png"
-                        class="w-48 h-48 z-10 cursor-pointer hover:scale-105 active:scale-95 transition"
-                        id="cheese_to_click"
-                        draggable="false"
-                />
+                <!-- Colonne gauche vide (équilibre) -->
+                <div class="hidden lg:block"></div>
 
-                <div id="cheese-container" class="absolute inset-0 animate-spin">
+                <div class="relative flex items-center justify-center flex-shrink-0">
+                    <!-- Halo externe animé -->
+                    <div class="absolute w-52 h-52 md:w-64 md:h-64 rounded-full bg-amber-300/40 animate-ping" style="animation-duration: 2s;"></div>
+                    <!-- Cercle de glow -->
+                    <div class="absolute w-44 h-44 md:w-56 md:h-56 rounded-full bg-amber-200/60 blur-xl"></div>
+                    <!-- Cercle de fond -->
+                    <div class="absolute w-40 h-40 md:w-52 md:h-52 rounded-full bg-amber-300/50 shadow-[0_0_40px_10px_rgba(251,191,36,0.5)]"></div>
+
+                    <div id="cheese-container" class="absolute w-40 h-40 md:w-52 md:h-52 animate-spin">
+                    </div>
+
+                    <img    alt="Cheese to click"
+                            src="assets/img/cheese_1.png"
+                            class="relative w-36 h-36 md:w-44 md:h-44 z-10 cursor-pointer
+                                   hover:scale-110 active:scale-95 transition duration-150
+                                   drop-shadow-[0_8px_24px_rgba(180,83,9,0.5)]"
+                            id="cheese_to_click"
+                            draggable="false"
+                    />
                 </div>
 
-                <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full ml-6 bg-white p-5 rounded-xl shadow-xl w-[400px] border border-amber-200" id="ia">
+                <div class="bg-white p-5 rounded-xl shadow-xl w-full max-w-[400px] lg:max-w-none lg:justify-self-end border border-amber-200" id="ia">
                     <div class="flex items-center gap-3 mb-4 pb-3 border-b border-amber-100">
-                        <div class="w-11 h-11 bg-amber-500 rounded-full flex items-center justify-center">
+                        <div class="w-11 h-11 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
                             <span class="text-xl">🧀</span>
                         </div>
                         <div>
@@ -69,7 +90,7 @@
                         </div>
                     </div>
 
-                    <div id="ia-messages" class="flex flex-col gap-3 h-72 overflow-y-auto mb-4 p-3 bg-amber-50 rounded-lg">
+                    <div id="ia-messages" class="flex flex-col gap-3 h-48 md:h-64 overflow-y-auto mb-4 p-3 bg-amber-50 rounded-lg">
                         <p class="text-sm text-amber-400 italic text-center py-4">Posez une question...</p>
                     </div>
 
@@ -88,6 +109,7 @@
                         </button>
                     </div>
                 </div>
+
             </div>
 
         </div>

@@ -35,6 +35,12 @@ export const clickUpgrade_button = document.getElementById("clicks-upgrades-butt
 export const autoUpgrade_button = document.getElementById("auto-upgrades-button")
 export const iaInput = document.getElementById("ia-input")
 export const iaSendButton = document.getElementById("ia-send")
+export const logout_button = document.getElementById("logout-button")
+
+logout_button.addEventListener('click', () => {
+    localStorage.removeItem("token")
+    window.location.href = "/auth/login.html"
+})
 
 iaInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
