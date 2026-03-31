@@ -51,8 +51,9 @@ export class Shop {
     toJson() {
         return [
             ...this.items.map((item) => {
+                if (!item) return;
                 return {
-                    id: item.id,
+                    id: item.id ?? 0,
                     name: item.name,
                     description: item.description,
                     quantity: item.quantity,

@@ -211,13 +211,4 @@ export const items = [
         clicks: 2500000,
         description: "Toutes les routes mènent à la crémerie."
     },
-    {
-        id: 23,
-        name: "Fromage de Paff",
-        price: 1000000000,
-        quantity: 0,
-        auto: true,
-        clicks: 15000000,
-        description: "Fromagio di zigouneta"
-    }
 ];
